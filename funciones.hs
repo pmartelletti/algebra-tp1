@@ -11,6 +11,13 @@ s2 :: Int -> Int
 s2 1 = ((-1)^1) * 2^1
 s2 n = s2(n-1) + ((-1)^n) * 2^n
 
+-- ejercicio 3
+elementosRepetidos :: [Int] -> [Int] -> Int
+elementosRepetidos x [] = 0
+elementosRepetidos [] y = 0
+elementosRepetidos (x:xs) y | x `elem` y = 1 + elementosRepetidos xs y
+elementosRepetidos (x:xs) y = elementosRepetidos xs y
+
 -- funciones auxiliares
 esPrimo :: Integer -> Bool
 esPrimo x = null (filter (\y ->  x `mod`y == 0) (takeWhile (\y ->  y*y <= x) [2..]))
