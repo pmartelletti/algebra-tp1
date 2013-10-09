@@ -20,6 +20,23 @@ elementosRepetidos [] y = 0
 elementosRepetidos (x:xs) (y:ys) | x == y = 1 + elementosRepetidos xs ys
 elementosRepetidos (x:xs) y = elementosRepetidos xs y
 
+
+long :: [a] -> Int
+long [] = 0
+long (x:xs) = 1 + (long xs)
+
+-- ejercicio 4
+triangular :: [Int] -> Bool
+triangular (x:y:ys) | x <= y = triangular(y:ys)
+		    | x > y = decreciente(y:ys)
+
+-- funcion que decide si una lista es decreciente
+decreciente :: [Int] -> Bool
+decreciente [] = True
+decreciente x | long(x) == 1 = True
+decreciente (x:y:ys) | x >= y = decreciente (y:ys)
+decreciente x = False
+
 -- funcione auxiliares para los otros ejercicios
 -- encuentra el primer divisor en una lista (no tiene por que ser el menor)
 primerDivisorEn :: [Int] -> Int -> Int
@@ -31,7 +48,6 @@ primerDivisorEn (x:xs) n = primerDivisorEn xs n
 -- se que siempre es el menor porque la lista [2..] esta ordenada de menor a mayor
 menorPrimoDivisor :: Int-> Int
 menorPrimoDivisor x = primerDivisorEn [2..] x
-
 
 -- ejercicio 5
 factoresPrimos :: Int -> [Int]
